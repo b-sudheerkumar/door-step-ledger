@@ -16,7 +16,7 @@ import {
 
 const operations = [
   { title: "Overview", url: "/dashboard", icon: LayoutDashboard },
-  { title: "Customers", url: "/dashboard", icon: Users },
+  { title: "Customers", url: "/customers", icon: Users },
   { title: "Schedules", url: "/dashboard", icon: CalendarRange },
   { title: "Production", url: "/dashboard", icon: Droplets },
   { title: "Billing", url: "/dashboard", icon: Receipt },
@@ -49,7 +49,7 @@ export function AppSidebar() {
           <SidebarGroupContent>
             <SidebarMenu>
               {operations.map((item) => {
-                const active = pathname === item.url && item.title === "Overview";
+                const active = pathname === item.url;
                 return (
                   <SidebarMenuItem key={item.title}>
                     <SidebarMenuButton asChild isActive={active}>

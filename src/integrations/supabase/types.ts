@@ -14,6 +14,54 @@ export type Database = {
   }
   public: {
     Tables: {
+      customers: {
+        Row: {
+          address: string | null
+          buffalo_default_qty: number
+          buffalo_price: number
+          cow_default_qty: number
+          cow_price: number
+          created_at: string
+          full_name: string
+          id: string
+          is_active: boolean
+          notes: string | null
+          owner_id: string
+          phone: string | null
+          updated_at: string
+        }
+        Insert: {
+          address?: string | null
+          buffalo_default_qty?: number
+          buffalo_price?: number
+          cow_default_qty?: number
+          cow_price?: number
+          created_at?: string
+          full_name: string
+          id?: string
+          is_active?: boolean
+          notes?: string | null
+          owner_id: string
+          phone?: string | null
+          updated_at?: string
+        }
+        Update: {
+          address?: string | null
+          buffalo_default_qty?: number
+          buffalo_price?: number
+          cow_default_qty?: number
+          cow_price?: number
+          created_at?: string
+          full_name?: string
+          id?: string
+          is_active?: boolean
+          notes?: string | null
+          owner_id?: string
+          phone?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
       profiles: {
         Row: {
           created_at: string
