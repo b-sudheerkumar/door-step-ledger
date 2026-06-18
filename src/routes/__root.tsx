@@ -77,7 +77,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1, viewport-fit=cover" },
-      { name: "theme-color", content: "#1A365D" },
+      { name: "theme-color", content: "#064e3b" },
       { title: "Gadapa — Doorstep dairy delivery, digitized" },
       { name: "description", content: "Offline-first delivery ledger for independent milkmen. Track customers, schedules, daily production, and reconciliation — built for the field." },
       { property: "og:title", content: "Gadapa — Doorstep dairy delivery, digitized" },
@@ -87,9 +87,6 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     ],
     links: [
       { rel: "stylesheet", href: appCss },
-      { rel: "preconnect", href: "https://fonts.googleapis.com" },
-      { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
-      { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" },
     ],
   }),
   shellComponent: RootShell,
