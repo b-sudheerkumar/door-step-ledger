@@ -28,6 +28,8 @@ export type Database = {
           notes: string | null
           owner_id: string
           phone: string | null
+          telegram_chat_id: number | null
+          telegram_link_token: string | null
           updated_at: string
         }
         Insert: {
@@ -43,6 +45,8 @@ export type Database = {
           notes?: string | null
           owner_id: string
           phone?: string | null
+          telegram_chat_id?: number | null
+          telegram_link_token?: string | null
           updated_at?: string
         }
         Update: {
@@ -58,9 +62,58 @@ export type Database = {
           notes?: string | null
           owner_id?: string
           phone?: string | null
+          telegram_chat_id?: number | null
+          telegram_link_token?: string | null
           updated_at?: string
         }
         Relationships: []
+      }
+      deliveries: {
+        Row: {
+          buffalo_qty: number
+          cow_qty: number
+          created_at: string
+          customer_id: string
+          delivered_at: string
+          delivery_date: string
+          id: string
+          notes: string | null
+          owner_id: string
+          updated_at: string
+        }
+        Insert: {
+          buffalo_qty?: number
+          cow_qty?: number
+          created_at?: string
+          customer_id: string
+          delivered_at?: string
+          delivery_date?: string
+          id?: string
+          notes?: string | null
+          owner_id: string
+          updated_at?: string
+        }
+        Update: {
+          buffalo_qty?: number
+          cow_qty?: number
+          created_at?: string
+          customer_id?: string
+          delivered_at?: string
+          delivery_date?: string
+          id?: string
+          notes?: string | null
+          owner_id?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "deliveries_customer_id_fkey"
+            columns: ["customer_id"]
+            isOneToOne: false
+            referencedRelation: "customers"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       profiles: {
         Row: {
