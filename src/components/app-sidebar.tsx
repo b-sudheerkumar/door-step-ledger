@@ -1,5 +1,5 @@
 import { Link, useRouterState } from "@tanstack/react-router";
-import { LayoutDashboard, Users, CalendarRange, Droplets, Receipt, Settings } from "lucide-react";
+import { LayoutDashboard, Users, CalendarRange, Droplets, Receipt, Settings, ListChecks } from "lucide-react";
 import {
   Sidebar,
   SidebarContent,
@@ -15,6 +15,7 @@ import {
 } from "@/components/ui/sidebar";
 
 const operations = [
+  { title: "Today's Route", url: "/today", icon: ListChecks },
   { title: "Overview", url: "/dashboard", icon: LayoutDashboard },
   { title: "Customers", url: "/customers", icon: Users },
   { title: "Schedules", url: "/dashboard", icon: CalendarRange },
