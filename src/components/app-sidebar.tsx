@@ -18,10 +18,10 @@ const operations = [
   { title: "Today's Route", url: "/today", icon: ListChecks },
   { title: "Overview", url: "/dashboard", icon: LayoutDashboard },
   { title: "Customers", url: "/customers", icon: Users },
-  { title: "Schedules", url: "/dashboard", icon: CalendarRange },
-  { title: "Production", url: "/dashboard", icon: Droplets },
-  { title: "Billing", url: "/dashboard", icon: Receipt },
+  { title: "Billing", url: "/billing", icon: Receipt },
 ];
+// Suppress unused-icon warnings for future routes
+void CalendarRange; void Droplets;
 
 export function AppSidebar() {
   const { state } = useSidebar();
