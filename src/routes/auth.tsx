@@ -10,7 +10,6 @@ import { toast } from "sonner";
 import { Toaster } from "@/components/ui/sonner";
 import { ArrowLeft, Loader2 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
-import { lovable } from "@/integrations/lovable";
 
 export const Route = createFileRoute("/auth")({
   head: () => ({
@@ -163,25 +162,32 @@ function CredForm({ mode }: { mode: "signin" | "signup" }) {
 
 function GoogleButton() {
   const [loading, setLoading] = useState(false);
+
   async function onClick() {
     setLoading(true);
     try {
-      const result = await lovable.auth.signInWithOAuth("google", {
-        redirect_uri: window.location.origin + "/dashboard",
+      const redirectTo = `${window.location.origin}/dashboard`;
+      const { data, error } = await supabase.auth.signInWithOAuth({
+        provider: "google",
+        options: {
+          redirectTo,
+        },
       });
-      if (result.error) {
-        const msg = result.error instanceof Error ? result.error.message : "Google sign-in failed";
-        toast.error(msg);
-        setLoading(false);
+
+      if (error) throw error;
+
+      if (data?.url) {
+        window.location.assign(data.url);
         return;
       }
-      if (result.redirected) return;
-      window.location.replace("/dashboard");
+
+      window.location.replace(redirectTo);
     } catch (err) {
-      toast.error(err instanceof Error ? err.message : "Google sign-in failed");
       setLoading(false);
+      toast.error(err instanceof Error ? err.message : "Google sign-in failed");
     }
   }
+
   return (
     <Button type="button" variant="outline" className="h-11 w-full rounded-xl text-base font-medium" onClick={onClick} disabled={loading}>
       {loading ? <Loader2 className="mr-2 size-4 animate-spin" /> : <GoogleIcon />}
