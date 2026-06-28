@@ -14,6 +14,112 @@ export type Database = {
   }
   public: {
     Tables: {
+      bills: {
+        Row: {
+          buffalo_amount: number
+          buffalo_litres: number
+          cow_amount: number
+          cow_litres: number
+          created_at: string
+          customer_id: string
+          id: string
+          issued_at: string | null
+          notes: string | null
+          owner_id: string
+          paid_at: string | null
+          period_end: string
+          period_start: string
+          share_token: string | null
+          status: string
+          total_amount: number
+          updated_at: string
+        }
+        Insert: {
+          buffalo_amount?: number
+          buffalo_litres?: number
+          cow_amount?: number
+          cow_litres?: number
+          created_at?: string
+          customer_id: string
+          id?: string
+          issued_at?: string | null
+          notes?: string | null
+          owner_id: string
+          paid_at?: string | null
+          period_end: string
+          period_start: string
+          share_token?: string | null
+          status?: string
+          total_amount?: number
+          updated_at?: string
+        }
+        Update: {
+          buffalo_amount?: number
+          buffalo_litres?: number
+          cow_amount?: number
+          cow_litres?: number
+          created_at?: string
+          customer_id?: string
+          id?: string
+          issued_at?: string | null
+          notes?: string | null
+          owner_id?: string
+          paid_at?: string | null
+          period_end?: string
+          period_start?: string
+          share_token?: string | null
+          status?: string
+          total_amount?: number
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "bills_customer_id_fkey"
+            columns: ["customer_id"]
+            isOneToOne: false
+            referencedRelation: "customers"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      customer_rate_history: {
+        Row: {
+          buffalo_price: number
+          cow_price: number
+          created_at: string
+          customer_id: string
+          effective_from: string
+          id: string
+          owner_id: string
+        }
+        Insert: {
+          buffalo_price?: number
+          cow_price?: number
+          created_at?: string
+          customer_id: string
+          effective_from: string
+          id?: string
+          owner_id: string
+        }
+        Update: {
+          buffalo_price?: number
+          cow_price?: number
+          created_at?: string
+          customer_id?: string
+          effective_from?: string
+          id?: string
+          owner_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "customer_rate_history_customer_id_fkey"
+            columns: ["customer_id"]
+            isOneToOne: false
+            referencedRelation: "customers"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       customers: {
         Row: {
           address: string | null
@@ -111,6 +217,50 @@ export type Database = {
             columns: ["customer_id"]
             isOneToOne: false
             referencedRelation: "customers"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      payments: {
+        Row: {
+          amount: number
+          bill_id: string
+          created_at: string
+          id: string
+          method: string
+          notes: string | null
+          owner_id: string
+          paid_at: string
+          reference: string | null
+        }
+        Insert: {
+          amount: number
+          bill_id: string
+          created_at?: string
+          id?: string
+          method?: string
+          notes?: string | null
+          owner_id: string
+          paid_at?: string
+          reference?: string | null
+        }
+        Update: {
+          amount?: number
+          bill_id?: string
+          created_at?: string
+          id?: string
+          method?: string
+          notes?: string | null
+          owner_id?: string
+          paid_at?: string
+          reference?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "payments_bill_id_fkey"
+            columns: ["bill_id"]
+            isOneToOne: false
+            referencedRelation: "bills"
             referencedColumns: ["id"]
           },
         ]
